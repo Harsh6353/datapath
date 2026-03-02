@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DataPath – Data Analyst Roadmap</title>
+    <meta name="description"
+        content="Your interactive Data Analyst roadmap. Track progress, take notes, practice quizzes, and more." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">DataPath</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" title="Collapse">‹</button>
+        </div>
+        <div class="nav-links">
+            <a href="javascript:void(0)" class="nav-link active" data-section="dashboard" id="nav-dashboard"><span
+                    class="nav-icon">⊞</span><span class="nav-label">Dashboard</span></a>
+            <a href="javascript:void(0)" class="nav-link" data-section="roadmap" id="nav-roadmap"><span
+                    class="nav-icon">🗺</span><span class="nav-label">Roadmap</span></a>
+            <a href="javascript:void(0)" class="nav-link" data-section="notes" id="nav-notes"><span
+                    class="nav-icon">📒</span><span class="nav-label">My Notes</span></a>
+            <a href="javascript:void(0)" class="nav-link" data-section="practice" id="nav-practice"><span
+                    class="nav-icon">🧠</span><span class="nav-label">Practice</span></a>
+            <a href="javascript:void(0)" class="nav-link" data-section="resources" id="nav-resources"><span
+                    class="nav-icon">📚</span><span class="nav-label">Resources</span></a>
+            <a href="javascript:void(0)" class="nav-link" data-section="stats" id="nav-stats"><span
+                    class="nav-icon">📊</span><span class="nav-label">Statistics</span></a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar" id="userAvatarSidebar">DA</div>
+                <div class="user-info">
+                    <div class="user-name" id="userNameDisplay">Loading…</div>
+                    <div class="user-since">Journey Started</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="main-content" id="mainContent">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="streak-badge"><span>🔥</span><span id="streakCount">0</span> day streak</div>
+                <div class="theme-toggle-wrap">
+                    <span class="theme-icon" id="themeIcon">🌙</span>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode"
+                        aria-label="Toggle theme"></button>
+                    <span class="theme-icon" id="themeIconSun">☀️</span>
+                </div>
+                <button class="btn-icon" id="settingsBtn" title="Settings">⚙</button>
+                <button class="logout-btn" onclick="logout()">Sign Out</button>
+            </div>
+        </header>
+
+        <!-- ── DASHBOARD ── -->
+        <section class="section active" id="section-dashboard">
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h2 id="welcomeGreeting">Welcome! 👋</h2>
+                    <p>Track your journey, master your skills, and become a world-class data analyst.</p>
+                </div>
+                <div class="welcome-art">
+                    <div class="floating-chart">
+                        <div class="bar" style="--h:60%"></div>
+                        <div class="bar" style="--h:80%"></div>
+                        <div class="bar" style="--h:45%"></div>
+                        <div class="bar" style="--h:90%"></div>
+                        <div class="bar" style="--h:70%"></div>
+                        <div class="bar" style="--h:55%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cards-grid">
+                <div class="stat-card glow-blue card-3d">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="overallPct">0%</div>
+                        <div class="stat-label">Overall Progress</div>
+                    </div>
+                    <div class="stat-ring"><svg viewBox="0 0 36 36">
+                            <circle class="ring-bg" cx="18" cy="18" r="15.9" />
+                            <circle class="ring-fill" id="ringFill" cx="18" cy="18" r="15.9"
+                                style="stroke-dasharray:0 100" />
+                        </svg></div>
+                </div>
+                <div class="stat-card glow-purple card-3d">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="topicsCompleted">0</div>
+                        <div class="stat-label">Topics Completed</div>
+                    </div>
+                </div>
+                <div class="stat-card glow-green card-3d">
+                    <div class="stat-icon">📝</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="notesCount">0</div>
+                        <div class="stat-label">Notes Written</div>
+                    </div>
+                </div>
+                <div class="stat-card glow-orange card-3d">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-content">
+                        <div class="stat-value" id="quizScore">0%</div>
+                        <div class="stat-label">Avg Quiz Score</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-block">
+                <h3 class="block-title">📈 Phase Progress</h3>
+                <div id="phaseProgressBars"></div>
+            </div>
+            <div class="two-col">
+                <div class="section-block">
+                    <h3 class="block-title">☀️ Today's Goals</h3>
+                    <div id="dailyGoals">
+                        <div class="goal-item" id="goal-study"><input type="checkbox" id="gStudy"
+                                onchange="toggleGoal('study',this.checked)" /><label for="gStudy">Study for 1
+                                hour</label></div>
+                        <div class="goal-item" id="goal-quiz"><input type="checkbox" id="gQuiz"
+                                onchange="toggleGoal('quiz',this.checked)" /><label for="gQuiz">Complete a practice
+                                quiz</label></div>
+                        <div class="goal-item" id="goal-note"><input type="checkbox" id="gNote"
+                                onchange="toggleGoal('note',this.checked)" /><label for="gNote">Write at least one
+                                note</label></div>
+                        <div class="goal-item" id="goal-topic"><input type="checkbox" id="gTopic"
+                                onchange="toggleGoal('topic',this.checked)" /><label for="gTopic">Complete a roadmap
+                                topic</label></div>
+                    </div>
+                </div>
+                <div class="section-block">
+                    <h3 class="block-title">⚡ Recent Activity</h3>
+                    <div id="recentActivity" class="activity-list">
+                        <div class="empty-state-small">No activity yet. Start learning!</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── ROADMAP ── -->
+        <section class="section" id="section-roadmap">
+            <div class="roadmap-intro">Click any topic to view details, mark complete, or add a note. Follow the phases
+                in order.</div>
+            <div id="roadmapContainer"></div>
+        </section>
+
+        <!-- ── NOTES ── -->
+        <section class="section" id="section-notes">
+            <div class="notes-toolbar">
+                <button class="btn-primary" id="newNoteBtn">+ New Note</button>
+                <select id="noteFilterTopic" class="select-input">
+                    <option value="all">All Topics</option>
+                </select>
+                <input type="text" id="noteSearch" class="text-input" placeholder="Search notes…" />
+            </div>
+            <div id="notesGrid" class="notes-grid"></div>
+        </section>
+
+        <!-- ── PRACTICE ── -->
+        <section class="section" id="section-practice">
+            <div class="practice-header">
+                <h2>Practice Zone</h2>
+                <p>Test your knowledge with curated quizzes.</p>
+            </div>
+            <div id="quizLobby">
+                <div class="quiz-category-grid" id="quizCategoryGrid"></div>
+            </div>
+            <div id="quizArena" class="quiz-arena hidden">
+                <div class="quiz-meta">
+                    <div class="quiz-topic-label" id="quizTopicLabel">Topic</div>
+                    <div class="quiz-counter"><span id="qCurrent">1</span> / <span id="qTotal">10</span></div>
+                    <div class="quiz-score-live">Score: <span id="liveScore">0</span></div>
+                </div>
+                <div class="progress-bar-thin">
+                    <div class="progress-bar-fill" id="quizProgressBar" style="width:0%"></div>
+                </div>
+                <div class="question-card" id="questionCard">
+                    <p class="question-text" id="questionText"></p>
+                    <div class="options-grid" id="optionsGrid"></div>
+                </div>
+                <button class="btn-primary" id="nextQuestionBtn" style="display:none">Next Question →</button>
+            </div>
+            <div id="quizResults" class="quiz-results hidden">
+                <div class="result-icon" id="resultIcon">🏆</div>
+                <h2 id="resultTitle">Quiz Complete!</h2>
+                <div class="result-score-big" id="resultScoreBig">0/0</div>
+                <div class="result-pct" id="resultPct">0%</div>
+                <p id="resultMsg"></p>
+                <div class="result-review" id="resultReview"></div>
+                <div class="result-actions">
+                    <button class="btn-ghost" id="retryQuizBtn">Retry</button>
+                    <button class="btn-primary" id="backToLobbyBtn">Back to Quizzes</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── RESOURCES ── -->
+        <section class="section" id="section-resources">
+            <div class="resources-grid" id="resourcesGrid"></div>
+        </section>
+
+        <!-- ── STATISTICS ── -->
+        <section class="section" id="section-stats">
+            <div class="stats-cards">
+                <div class="big-stat-card">
+                    <h3>Learning Activity (Last 35 days)</h3>
+                    <div class="heatmap-label">Each cell = one learning action</div>
+                    <div class="heatmap" id="heatmap"></div>
+                </div>
+                <div class="big-stat-card">
+                    <h3>Skill Radar</h3>
+                    <canvas id="radarCanvas" width="300" height="300"></canvas>
+                </div>
+            </div>
+            <div class="section-block" style="margin-top:1.5rem">
+                <h3 class="block-title">✅ Completed Topics</h3>
+                <div id="completedTopicList" class="completed-list"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- NOTE MODAL -->
+    <div class="modal-overlay" id="noteModal">
+        <div class="modal note-modal">
+            <div class="modal-header">
+                <h3 id="noteModalTitle">New Note</h3><button class="modal-close" id="closeNoteModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="noteTitleInput" class="text-input full-width" placeholder="Note title…" />
+                <select id="noteTopicSelect" class="select-input full-width">
+                    <option value="General">General</option>
+                </select>
+                <select id="noteTagSelect" class="select-input full-width">
+                    <option value="Concept">Concept</option>
+                    <option value="Formula">Formula</option>
+                    <option value="Tip">Tip</option>
+                    <option value="Important">Important</option>
+                    <option value="Question">Question</option>
+                </select>
+                <textarea id="noteContentInput" class="textarea full-width" rows="12"
+                    placeholder="Write your note here…"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-ghost" id="cancelNoteBtn">Cancel</button>
+                <button class="btn-primary" id="saveNoteBtn">Save Note</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>⚙ Settings</h3><button class="modal-close" id="closeSettingsModal">✕</button>
+            </div>
+            <div class="modal-body">
+                <label class="settings-label">Display Name</label>
+                <input type="text" id="settingsName" class="text-input full-width" placeholder="Your name" />
+                <label class="settings-label" style="margin-top:1rem">Danger Zone</label>
+                <button class="btn-danger" id="resetProgressBtn">⚠ Reset All Progress</button>
+            </div>
+            <div class="modal-footer"><button class="btn-primary" id="saveSettingsBtn">Save</button></div>
+        </div>
+    </div>
+
+    <!-- TOPIC MODAL -->
+    <div class="modal-overlay" id="topicModal">
+        <div class="modal topic-modal">
+            <div class="modal-header">
+                <h3 id="topicModalTitle">Topic</h3><button class="modal-close" id="closeTopicModal">✕</button>
+            </div>
+            <div class="modal-body" id="topicModalBody"></div>
+            <div class="modal-footer">
+                <button class="btn-ghost" id="addNoteFromTopic">📝 Add Note</button>
+                <button class="btn-primary" id="markTopicDone">✓ Mark Complete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

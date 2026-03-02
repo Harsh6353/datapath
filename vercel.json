@@ -1,0 +1,35 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "server/server.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "server/server.js"
+        },
+        {
+            "src": "/login.html",
+            "dest": "client/login.html"
+        },
+        {
+            "src": "/style.css",
+            "dest": "client/style.css"
+        },
+        {
+            "src": "/app.js",
+            "dest": "client/app.js"
+        },
+        {
+            "src": "/auth.js",
+            "dest": "client/auth.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "server/server.js"
+        }
+    ]
+}

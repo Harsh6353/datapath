@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Database files (local only - don't commit)
+server/data/
+server/datapath.db
+
+# Environment variables (NEVER commit this!)
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
