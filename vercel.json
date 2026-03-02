@@ -2,6 +2,10 @@
     "version": 2,
     "builds": [
         {
+            "src": "client/**",
+            "use": "@vercel/static"
+        },
+        {
             "src": "server/server.js",
             "use": "@vercel/node"
         }
@@ -10,10 +14,6 @@
         {
             "src": "/api/(.*)",
             "dest": "server/server.js"
-        },
-        {
-            "src": "/login.html",
-            "dest": "client/login.html"
         },
         {
             "src": "/style.css",
@@ -26,6 +26,18 @@
         {
             "src": "/auth.js",
             "dest": "client/auth.js"
+        },
+        {
+            "src": "/login.html",
+            "dest": "client/login.html"
+        },
+        {
+            "src": "/index.html",
+            "dest": "client/index.html"
+        },
+        {
+            "src": "/",
+            "dest": "client/login.html"
         },
         {
             "src": "/(.*)",
